@@ -35,6 +35,13 @@ databaseChangeLog:
 
   - changeSet:
       author: drsteini
+      id: "create.extension.plv8"
+      changes:
+        - sql: create extension if not exists plv8;
+        - rollback: drop extension if exists plv8;
+
+  - changeSet:
+      author: drsteini
       id: "create.project.schema.${WQP_SCHEMA_NAME}"
       preConditions:
         - onFail: MARK_RAN

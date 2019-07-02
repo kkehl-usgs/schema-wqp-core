@@ -1,4 +1,4 @@
-FROM usgswma/wqp_db_base:postgis10-11.0.3
+FROM usgswma/iow_test_db:postgis10-11.0.3
 
 LABEL maintainer=gs-w_eto_eb_federal_employees@usgs.gov
 
@@ -7,15 +7,12 @@ ARG BIODATA_REPO_ZIP_URL=https://github.com/NWQMC/schema-biodata/archive/master.
 ARG NWIS_REPO_ZIP_URL=https://github.com/NWQMC/schema-nwis-ws-star/archive/master.zip
 ARG EPA_REPO_ZIP_URL=https://github.com/NWQMC/schema-epa/archive/master.zip
 
-RUN apt-get update && \
-  apt-get install --no-install-recommends --no-upgrade curl -y && \
-  rm -rf /var/lib/apt/lists/*
-
 ############################################
 # Grab files for initializing wqp database
 ############################################
 
 ENV LIQUIBASE_WORKSPACE_WQP $LIQUIBASE_HOME/workspace/wqp
+WORKDIR $LIQUIBASE_WORKSPACE_WQP
 COPY ./liquibase/changeLogs $LIQUIBASE_WORKSPACE_WQP
 COPY ./liquibase/scripts/*.sh /docker-entrypoint-initdb.d/
 COPY ./liquibase/scripts/dbInit /docker-entrypoint-initdb.d/
