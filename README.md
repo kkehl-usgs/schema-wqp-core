@@ -74,7 +74,10 @@ EPA_REPO_ZIP_URL=<https://github.com/NWQMC/schema-epa/archive/master.zip>
 EPA_SCHEMA_OWNER_USERNAME=<epa_owner>
 EPA_SCHEMA_OWNER_PASSWORD=<changeMe>
 WQX_SCHEMA_NAME=<wqx>
+WQX_DUMP_SCHEMA_NAME=<wqx_dump>
 STORETW_SCHEMA_NAME=<storetw>
+
+SECURE_CURL=
 
 ```
 
@@ -127,6 +130,15 @@ STORETW_SCHEMA_NAME=<storetw>
 * **NWIS_SCHEMA_NAME** - Name of the schema to create for holding NWIS database objects.
 * **NWIS_SCHEMA_OWNER_USERNAME** - Role which will own the **NWIS_SCHEMA_NAME** database objects.
 * **NWIS_SCHEMA_OWNER_PASSWORD** - Password for the **NWIS_SCHEMA_OWNER_USERNAME** role.
+
+* **EPA_REPO_ZIP_URL** - The URL for the Download ZIP file of the https://github.com/NWQMC/schema-epa project.
+* **EPA_SCHEMA_OWNER_USERNAME**  - Role which will own the **WQX_SCHEMA_NAME**, **WQX_DUMP_SCHEMA_NAME**, and **STORETW_SCHEMA_NAME** database objects.
+* **EPA_SCHEMA_OWNER_PASSWORD** - Password for the **EPA_SCHEMA_OWNER_USERNAME** role.
+* **WQX_SCHEMA_NAME** - Name of the schema to create for holding WQX database objects.
+* **WQX_DUMP_SCHEMA_NAME** - Name of the schema to create for holding WQX database objects from the EPA.
+* **STORETW_SCHEMA_NAME** - Name of the schema to create for holding STORETW database objects.
+
+* **SECURE_CURL** - Allow for insecure fetching of the various external source schema definitions. Valid values are an empty string (recommended value) and **--insecure** (Not recommended for use unless on the DOI network).
 
 ##### Context values used for configuration
 
