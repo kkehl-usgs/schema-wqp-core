@@ -76,6 +76,7 @@ EPA_SCHEMA_OWNER_PASSWORD=<changeMe>
 WQX_SCHEMA_NAME=<wqx>
 WQX_DUMP_SCHEMA_NAME=<wqx_dump>
 STORETW_SCHEMA_NAME=<storetw>
+STORETW_DUMP_SCHEMA_NAME=<storetw_dump>
 
 SECURE_CURL=
 
@@ -137,6 +138,7 @@ SECURE_CURL=
 * **WQX_SCHEMA_NAME** - Name of the schema to create for holding WQX database objects.
 * **WQX_DUMP_SCHEMA_NAME** - Name of the schema to create for holding WQX database objects from the EPA.
 * **STORETW_SCHEMA_NAME** - Name of the schema to create for holding STORETW database objects.
+* **STORETW_DUMP_SCHEMA_NAME** - Name of the schema to create for holding STORETW database object from the EPA.
 
 * **SECURE_CURL** - Allow for insecure fetching of the various external source schema definitions. Valid values are an empty string (recommended value) and **--insecure** (Not recommended for use unless on the DOI network).
 
