@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - preConditions:
+    - dbms:
+        type: postgresql
+
+  - changeSet:
+      author: drsteini
+      id: "create.table.${WQP_SCHEMA_NAME}.huc8_conus_hi_ak_pr_dis"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - not:
+          - tableExists:
+              tableName: huc8_conus_hi_ak_pr_dis
+      changes:
+        - sqlFile:
+            path: huc8ConusHiAkPrDis.sql
+            relativeToChangelogFile: true
+        - rollback: drop table if exists ${WQP_SCHEMA_NAME}.huc8_conus_hi_ak_pr_dis cascade;
+
+  - changeSet:
+      author: skaymen
+      id: "create.table.${WQP_SCHEMA_NAME}.huc12nometa"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - not:
+          - tableExists:
+              tableName: huc12nometa
+      changes:
+        - sqlFile:
+            path: huc12nometa.sql
+            relativeToChangelogFile: true
+        - rollback: drop table if exists ${WQP_SCHEMA_NAME}.huc12nometa cascade;
+

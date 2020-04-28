@@ -1,0 +1,54 @@
+databaseChangeLog:
+  - preConditions:
+    - dbms:
+        type: postgresql
+    - runningAs:
+        username: postgres
+
+  - changeSet:
+      author: drsteini
+      id: "create.extension.postgis"
+      changes:
+        - sql: create extension if not exists postgis;
+        - rollback: drop extension if exists postgis;
+
+  - changeSet:
+      author: drsteini
+      id: "create.extension.postgis_topology"
+      changes:
+        - sql: create extension if not exists postgis_topology;
+        - rollback: drop extension if exists postgis_topology;
+
+  - changeSet:
+      author: drsteini
+      id: "create.extension.fuzzystrmatch"
+      changes:
+        - sql: create extension if not exists fuzzystrmatch;
+        - rollback: drop extension if exists fuzzystrmatch;
+
+  - changeSet:
+      author: drsteini
+      id: "create.extension.postgis_tiger_geocoder"
+      changes:
+        - sql: create extension if not exists postgis_tiger_geocoder;
+        - rollback: drop extension if exists postgis_tiger_geocoder;
+
+  - changeSet:
+      author: drsteini
+      id: "create.extension.plv8"
+      changes:
+        - sql: create extension if not exists plv8;
+        - rollback: drop extension if exists plv8;
+
+  - changeSet:
+      author: drsteini
+      id: "create.project.schema.${WQP_SCHEMA_NAME}"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+            expectedResult: 0
+            sql: select count(*) from pg_namespace where nspname = '${WQP_SCHEMA_NAME}';
+      changes:
+        - sql: create schema ${WQP_SCHEMA_NAME} authorization ${WQP_SCHEMA_OWNER_USERNAME};
+        - rollback: drop schema if exists ${WQP_SCHEMA_NAME} cascade;

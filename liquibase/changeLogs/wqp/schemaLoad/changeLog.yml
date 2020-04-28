@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - preConditions:
+    - dbms:
+        type: postgresql
+
+  - include:
+      file: "tables/changeLog.yml"
+      relativeToChangelogFile: true
+
+  - include:
+      file: "indexes/changeLog.yml"
+      relativeToChangelogFile: true
+
+  - include:
+      file: "objectGrants/changeLog.yml"
+      relativeToChangelogFile: true
+
+  - include:
+      file: "zData/changeLog.yml"
+      relativeToChangelogFile: true
