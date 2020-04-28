@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - preConditions:
+    - dbms:
+        type: postgresql
+
+  - changeSet:
+      author: drsteini
+      id: "create.table.${WQP_SCHEMA_NAME}.public_srsnames"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - not:
+          - tableExists:
+              tableName: public_srsnames
+      changes:
+        - sqlFile:
+            path: publicSrsnames.sql
+            relativeToChangelogFile: true
+        - rollback: drop table if exists ${WQP_SCHEMA_NAME}.public_srsnames cascade;

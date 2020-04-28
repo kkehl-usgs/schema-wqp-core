@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - preConditions:
+    - dbms:
+        type: postgresql
+
+  - changeSet:
+      author: drsteini
+      id: "create.table.${WQP_SCHEMA_NAME}.web_service_log"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - not:
+          - tableExists:
+              tableName: web_service_log
+      changes:
+        - sqlFile:
+            path: webServiceLog.sql
+            relativeToChangelogFile: true
+        - rollback: drop table if exists ${WQP_SCHEMA_NAME}.web_service_log cascade;

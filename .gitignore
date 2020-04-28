@@ -1,3 +1,5 @@
 /.project
 /.env
 /liquibase/logs
+/.README.md.html
+/wqp_core_all.tar.gz
