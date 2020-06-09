@@ -18,3 +18,11 @@ databaseChangeLog:
         - sql:
             sql: grant usage on schema ${WQP_SCHEMA_NAME} to ${WQP_READ_ONLY_USERNAME};
         - rollback: revoke usage on schema ${WQP_SCHEMA_NAME} from ${WQP_READ_ONLY_USERNAME};
+
+  - changeSet:
+      author: drsteini
+      id: "grant.usage.${WQP_SCHEMA_NAME}.to.${NWIS_SCHEMA_OWNER_USERNAME}"
+      changes:
+        - sql:
+            sql: grant usage on schema ${WQP_SCHEMA_NAME} to ${NWIS_SCHEMA_OWNER_USERNAME};
+        - rollback: revoke usage on schema ${WQP_SCHEMA_NAME} from ${NWIS_SCHEMA_OWNER_USERNAME};

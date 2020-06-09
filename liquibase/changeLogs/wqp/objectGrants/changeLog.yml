@@ -1,0 +1,116 @@
+databaseChangeLog:
+  - preConditions:
+    - dbms:
+        type: postgresql
+
+  - changeSet:
+      author: drsteini
+      id: "grant.select.${WQP_SCHEMA_NAME}.assemblage.${NWIS_SCHEMA_OWNER_USERNAME}"
+      changes:
+        - sql:
+            sql: grant select on ${WQP_SCHEMA_NAME}.assemblage to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
+        - rollback: revoke select on ${WQP_SCHEMA_NAME}.assemblage from ${NWIS_SCHEMA_OWNER_USERNAME};
+
+  - changeSet:
+      author: drsteini
+      id: "grant.select.${WQP_SCHEMA_NAME}.char_name.${NWIS_SCHEMA_OWNER_USERNAME}"
+      changes:
+        - sql:
+            sql: grant select on ${WQP_SCHEMA_NAME}.char_name to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
+        - rollback: revoke select on ${WQP_SCHEMA_NAME}.char_name from ${NWIS_SCHEMA_OWNER_USERNAME};
+
+  - changeSet:
+      author: drsteini
+      id: "grant.select.${WQP_SCHEMA_NAME}.char_type.${NWIS_SCHEMA_OWNER_USERNAME}"
+      changes:
+        - sql:
+            sql: grant select on ${WQP_SCHEMA_NAME}.char_type to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
+        - rollback: revoke select on ${WQP_SCHEMA_NAME}.char_type from ${NWIS_SCHEMA_OWNER_USERNAME};
+
+  - changeSet:
+      author: drsteini
+      id: "grant.select.${WQP_SCHEMA_NAME}.country.${NWIS_SCHEMA_OWNER_USERNAME}"
+      changes:
+        - sql:
+            sql: grant select on ${WQP_SCHEMA_NAME}.country to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
+        - rollback: revoke select on ${WQP_SCHEMA_NAME}.country from ${NWIS_SCHEMA_OWNER_USERNAME};
+
+  - changeSet:
+      author: drsteini
+      id: "grant.select.${WQP_SCHEMA_NAME}.county.${NWIS_SCHEMA_OWNER_USERNAME}"
+      changes:
+        - sql:
+            sql: grant select on ${WQP_SCHEMA_NAME}.county to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
+        - rollback: revoke select on ${WQP_SCHEMA_NAME}.county from ${NWIS_SCHEMA_OWNER_USERNAME};
+
+  - changeSet:
+      author: drsteini
+      id: "grant.select.${WQP_SCHEMA_NAME}.data_source.${NWIS_SCHEMA_OWNER_USERNAME}"
+      changes:
+        - sql:
+            sql: grant select on ${WQP_SCHEMA_NAME}.data_source to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
+        - rollback: revoke select on ${WQP_SCHEMA_NAME}.data_source from ${NWIS_SCHEMA_OWNER_USERNAME};
+
+  - changeSet:
+      author: drsteini
+      id: "grant.select.${WQP_SCHEMA_NAME}.last_etl.${NWIS_SCHEMA_OWNER_USERNAME}"
+      changes:
+        - sql:
+            sql: grant select on ${WQP_SCHEMA_NAME}.last_etl to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
+        - rollback: revoke select on ${WQP_SCHEMA_NAME}.last_etl from ${NWIS_SCHEMA_OWNER_USERNAME};
+
+  - changeSet:
+      author: drsteini
+      id: "grant.select.${WQP_SCHEMA_NAME}.monitoring_loc.${NWIS_SCHEMA_OWNER_USERNAME}"
+      changes:
+        - sql:
+            sql: grant select on ${WQP_SCHEMA_NAME}.monitoring_loc to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
+        - rollback: revoke select on ${WQP_SCHEMA_NAME}.monitoring_loc from ${NWIS_SCHEMA_OWNER_USERNAME};
+
+  - changeSet:
+      author: drsteini
+      id: "grant.select.${WQP_SCHEMA_NAME}.organization.${NWIS_SCHEMA_OWNER_USERNAME}"
+      changes:
+        - sql:
+            sql: grant select on ${WQP_SCHEMA_NAME}.organization to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
+        - rollback: revoke select on ${WQP_SCHEMA_NAME}.organization from ${NWIS_SCHEMA_OWNER_USERNAME};
+
+  - changeSet:
+      author: drsteini
+      id: "grant.select.${WQP_SCHEMA_NAME}.project.${NWIS_SCHEMA_OWNER_USERNAME}"
+      changes:
+        - sql:
+            sql: grant select on ${WQP_SCHEMA_NAME}.project to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
+        - rollback: revoke select on ${WQP_SCHEMA_NAME}.project from ${NWIS_SCHEMA_OWNER_USERNAME};
+
+  - changeSet:
+      author: drsteini
+      id: "grant.select.${WQP_SCHEMA_NAME}.sample_media.${NWIS_SCHEMA_OWNER_USERNAME}"
+      changes:
+        - sql:
+            sql: grant select on ${WQP_SCHEMA_NAME}.sample_media to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
+        - rollback: revoke select on ${WQP_SCHEMA_NAME}.sample_media from ${NWIS_SCHEMA_OWNER_USERNAME};
+
+  - changeSet:
+      author: drsteini
+      id: "grant.select.${WQP_SCHEMA_NAME}.site_type.${NWIS_SCHEMA_OWNER_USERNAME}"
+      changes:
+        - sql:
+            sql: grant select on ${WQP_SCHEMA_NAME}.site_type to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
+        - rollback: revoke select on ${WQP_SCHEMA_NAME}.site_type from ${NWIS_SCHEMA_OWNER_USERNAME};
+
+  - changeSet:
+      author: drsteini
+      id: "grant.select.${WQP_SCHEMA_NAME}.state.${NWIS_SCHEMA_OWNER_USERNAME}"
+      changes:
+        - sql:
+            sql: grant select on ${WQP_SCHEMA_NAME}.state to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
+        - rollback: revoke select on ${WQP_SCHEMA_NAME}.state from ${NWIS_SCHEMA_OWNER_USERNAME};
+
+  - changeSet:
+      author: drsteini
+      id: "grant.select.${WQP_SCHEMA_NAME}.taxa_name.${NWIS_SCHEMA_OWNER_USERNAME}"
+      changes:
+        - sql:
+            sql: grant select on ${WQP_SCHEMA_NAME}.taxa_name to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
+        - rollback: revoke select on ${WQP_SCHEMA_NAME}.taxa_name from ${NWIS_SCHEMA_OWNER_USERNAME};

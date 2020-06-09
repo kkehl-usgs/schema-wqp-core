@@ -78,3 +78,23 @@ databaseChangeLog:
       changes:
         - sql: alter database "${WQP_DATABASE_NAME}" set search_path = "$user", ${WQP_SCHEMA_NAME}, public, tiger;
         - rollback: alter database "${WQP_DATABASE_NAME}" reset search_path;
+
+  - changeSet:
+      author: drsteini
+      id: "create.project.owner.role.${NWIS_SCHEMA_OWNER_USERNAME}"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+            expectedResult: 0
+            sql: select count(*) from pg_roles where rolname = '${NWIS_SCHEMA_OWNER_USERNAME}';
+      changes:
+        - sql: create role ${NWIS_SCHEMA_OWNER_USERNAME} with login password '${NWIS_SCHEMA_OWNER_PASSWORD}';
+        - rollback: drop role if exists ${NWIS_SCHEMA_OWNER_USERNAME};
+
+  - changeSet:
+      author: drsteini
+      id: "grant.${NWIS_SCHEMA_OWNER_USERNAME}.to.postgres"
+      changes:
+        - sql: grant ${NWIS_SCHEMA_OWNER_USERNAME} to postgres;
+        - rollback: revoke ${NWIS_SCHEMA_OWNER_USERNAME} from postgres;
