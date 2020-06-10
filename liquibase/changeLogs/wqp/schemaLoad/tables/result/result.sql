@@ -48,12 +48,12 @@ create unlogged table if not exists ${WQP_SCHEMA_NAME}.result
 ,act_collection_duration        text
 ,act_collection_duration_unit   text
 ,act_sam_compnt_name            text
-,act_sam_compnt_place_in_series smallint
+,act_sam_compnt_place_in_series integer
 ,act_reach_length               text
 ,act_reach_length_unit          text
 ,act_reach_width                text
 ,act_reach_width_unit           text
-,act_pass_count                 smallint
+,act_pass_count                 integer
 ,net_type_name                  text
 ,act_net_surface_area           text
 ,act_net_surface_area_unit      text
