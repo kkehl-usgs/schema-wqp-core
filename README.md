@@ -60,11 +60,6 @@ ARS_SCHEMA_NAME=<ars>
 ARS_SCHEMA_OWNER_USERNAME=<ars_owner>
 ARS_SCHEMA_OWNER_PASSWORD=<changeMe>
 
-BIODATA_REPO_ZIP_URL=<https://github.com/NWQMC/schema-biodata/archive/master.zip>
-BIODATA_SCHEMA_NAME=<biodata>
-BIODATA_SCHEMA_OWNER_USERNAME=<biodata_owner>
-BIODATA_SCHEMA_OWNER_PASSWORD=<changeMe>
-
 NWIS_REPO_ZIP_URL=<https://github.com/NWQMC/schema-nwis-ws-star/archive/master.zip>
 NWIS_SCHEMA_NAME=<nwis>
 NWIS_SCHEMA_OWNER_USERNAME=<nwis_ws_star>
@@ -121,11 +116,6 @@ SECURE_CURL=
 * **ARS_SCHEMA_NAME** - Name of the schema to create for holding STEWARDS database objects.
 * **ARS_SCHEMA_OWNER_USERNAME** - Role which will own the **ARS_SCHEMA_NAME** database objects.
 * **ARS_SCHEMA_OWNER_PASSWORD** - Password for the **ARS_SCHEMA_OWNER_PASSWORD** role.
-
-* **BIODATA_REPO_ZIP_URL** - The URL for the Download ZIP file of the https://github.com/NWQMC/schema-biodata project.
-* **BIODATA_SCHEMA_NAME** - Name of the schema to create for holding BIODATA database objects.
-* **BIODATA_SCHEMA_OWNER_USERNAME** - Role which will own the **BIODATA_SCHEMA_NAME** database objects.
-* **BIODATA_SCHEMA_OWNER_PASSWORD** - Password for the **BIODATA_SCHEMA_OWNER_USERNAME** role.
 
 * **NWIS_REPO_ZIP_URL** - The URL for the Download ZIP file of the https://github.com/NWQMC/schema-nwis-ws-star project.
 * **NWIS_SCHEMA_NAME** - Name of the schema to create for holding NWIS database objects.
