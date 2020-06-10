@@ -11,6 +11,7 @@ pipeline {
           currentBuild.description = "Deploy to ${env.DEPLOY_STAGE} - Liquibase: ${env.RUN_LIQUIBASE} - GEO: ${env.RUN_GEO_REFERENCE}"
         }
       }
+    }
     stage('Clean Workspace') {
       steps {
         cleanWs()
@@ -149,5 +150,4 @@ pipeline {
       }
     }
   }
-}
 }
