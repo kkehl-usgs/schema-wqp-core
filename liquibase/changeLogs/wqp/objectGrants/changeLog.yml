@@ -5,11 +5,51 @@ databaseChangeLog:
 
   - changeSet:
       author: drsteini
+      id: "grant.select.${WQP_SCHEMA_NAME}.activity.${NWIS_SCHEMA_OWNER_USERNAME}"
+      changes:
+        - sql:
+            sql: grant select on ${WQP_SCHEMA_NAME}.activity to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
+        - rollback: revoke select on ${WQP_SCHEMA_NAME}.activity from ${NWIS_SCHEMA_OWNER_USERNAME};
+
+  - changeSet:
+      author: drsteini
+      id: "grant.select.${WQP_SCHEMA_NAME}.activity_object.${NWIS_SCHEMA_OWNER_USERNAME}"
+      changes:
+        - sql:
+            sql: grant select on ${WQP_SCHEMA_NAME}.activity_object to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
+        - rollback: revoke select on ${WQP_SCHEMA_NAME}.activity_object from ${NWIS_SCHEMA_OWNER_USERNAME};
+
+  - changeSet:
+      author: drsteini
+      id: "grant.select.${WQP_SCHEMA_NAME}.activity_sum.${NWIS_SCHEMA_OWNER_USERNAME}"
+      changes:
+        - sql:
+            sql: grant select on ${WQP_SCHEMA_NAME}.activity_sum to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
+        - rollback: revoke select on ${WQP_SCHEMA_NAME}.activity_sum from ${NWIS_SCHEMA_OWNER_USERNAME};
+
+  - changeSet:
+      author: drsteini
+      id: "grant.select.${WQP_SCHEMA_NAME}.act_metric.${NWIS_SCHEMA_OWNER_USERNAME}"
+      changes:
+        - sql:
+            sql: grant select on ${WQP_SCHEMA_NAME}.act_metric to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
+        - rollback: revoke select on ${WQP_SCHEMA_NAME}.act_metric from ${NWIS_SCHEMA_OWNER_USERNAME};
+
+  - changeSet:
+      author: drsteini
       id: "grant.select.${WQP_SCHEMA_NAME}.assemblage.${NWIS_SCHEMA_OWNER_USERNAME}"
       changes:
         - sql:
             sql: grant select on ${WQP_SCHEMA_NAME}.assemblage to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
         - rollback: revoke select on ${WQP_SCHEMA_NAME}.assemblage from ${NWIS_SCHEMA_OWNER_USERNAME};
+
+  - changeSet:
+      author: drsteini
+      id: "grant.select.${WQP_SCHEMA_NAME}.bio_hab_metric.${NWIS_SCHEMA_OWNER_USERNAME}"
+      changes:
+        - sql:
+            sql: grant select on ${WQP_SCHEMA_NAME}.bio_hab_metric to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
+        - rollback: revoke select on ${WQP_SCHEMA_NAME}.bio_hab_metric from ${NWIS_SCHEMA_OWNER_USERNAME};
 
   - changeSet:
       author: drsteini
@@ -61,11 +101,27 @@ databaseChangeLog:
 
   - changeSet:
       author: drsteini
+      id: "grant.select.${WQP_SCHEMA_NAME}.ml_grouping.${NWIS_SCHEMA_OWNER_USERNAME}"
+      changes:
+        - sql:
+            sql: grant select on ${WQP_SCHEMA_NAME}.ml_grouping to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
+        - rollback: revoke select on ${WQP_SCHEMA_NAME}.ml_grouping from ${NWIS_SCHEMA_OWNER_USERNAME};
+
+  - changeSet:
+      author: drsteini
       id: "grant.select.${WQP_SCHEMA_NAME}.monitoring_loc.${NWIS_SCHEMA_OWNER_USERNAME}"
       changes:
         - sql:
             sql: grant select on ${WQP_SCHEMA_NAME}.monitoring_loc to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
         - rollback: revoke select on ${WQP_SCHEMA_NAME}.monitoring_loc from ${NWIS_SCHEMA_OWNER_USERNAME};
+
+  - changeSet:
+      author: drsteini
+      id: "grant.select.${WQP_SCHEMA_NAME}.org_data.${NWIS_SCHEMA_OWNER_USERNAME}"
+      changes:
+        - sql:
+            sql: grant select on ${WQP_SCHEMA_NAME}.org_data to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
+        - rollback: revoke select on ${WQP_SCHEMA_NAME}.org_data from ${NWIS_SCHEMA_OWNER_USERNAME};
 
   - changeSet:
       author: drsteini
@@ -77,11 +133,83 @@ databaseChangeLog:
 
   - changeSet:
       author: drsteini
+      id: "grant.select.${WQP_SCHEMA_NAME}.organization_sum.${NWIS_SCHEMA_OWNER_USERNAME}"
+      changes:
+        - sql:
+            sql: grant select on ${WQP_SCHEMA_NAME}.organization_sum to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
+        - rollback: revoke select on ${WQP_SCHEMA_NAME}.organization_sum from ${NWIS_SCHEMA_OWNER_USERNAME};
+
+  - changeSet:
+      author: drsteini
+      id: "grant.select.${WQP_SCHEMA_NAME}.prj_ml_weighting.${NWIS_SCHEMA_OWNER_USERNAME}"
+      changes:
+        - sql:
+            sql: grant select on ${WQP_SCHEMA_NAME}.prj_ml_weighting to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
+        - rollback: revoke select on ${WQP_SCHEMA_NAME}.prj_ml_weighting from ${NWIS_SCHEMA_OWNER_USERNAME};
+
+  - changeSet:
+      author: drsteini
       id: "grant.select.${WQP_SCHEMA_NAME}.project.${NWIS_SCHEMA_OWNER_USERNAME}"
       changes:
         - sql:
             sql: grant select on ${WQP_SCHEMA_NAME}.project to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
         - rollback: revoke select on ${WQP_SCHEMA_NAME}.project from ${NWIS_SCHEMA_OWNER_USERNAME};
+
+  - changeSet:
+      author: drsteini
+      id: "grant.select.${WQP_SCHEMA_NAME}.project_dim.${NWIS_SCHEMA_OWNER_USERNAME}"
+      changes:
+        - sql:
+            sql: grant select on ${WQP_SCHEMA_NAME}.project_dim to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
+        - rollback: revoke select on ${WQP_SCHEMA_NAME}.project_dim from ${NWIS_SCHEMA_OWNER_USERNAME};
+
+  - changeSet:
+      author: drsteini
+      id: "grant.select.${WQP_SCHEMA_NAME}.project_data.${NWIS_SCHEMA_OWNER_USERNAME}"
+      changes:
+        - sql:
+            sql: grant select on ${WQP_SCHEMA_NAME}.project_data to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
+        - rollback: revoke select on ${WQP_SCHEMA_NAME}.project_data from ${NWIS_SCHEMA_OWNER_USERNAME};
+
+  - changeSet:
+      author: drsteini
+      id: "grant.select.${WQP_SCHEMA_NAME}.project_object.${NWIS_SCHEMA_OWNER_USERNAME}"
+      changes:
+        - sql:
+            sql: grant select on ${WQP_SCHEMA_NAME}.project_object to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
+        - rollback: revoke select on ${WQP_SCHEMA_NAME}.project_object from ${NWIS_SCHEMA_OWNER_USERNAME};
+
+  - changeSet:
+      author: drsteini
+      id: "grant.select.${WQP_SCHEMA_NAME}.r_detect_qnt_lmt.${NWIS_SCHEMA_OWNER_USERNAME}"
+      changes:
+        - sql:
+            sql: grant select on ${WQP_SCHEMA_NAME}.r_detect_qnt_lmt to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
+        - rollback: revoke select on ${WQP_SCHEMA_NAME}.r_detect_qnt_lmt from ${NWIS_SCHEMA_OWNER_USERNAME};
+
+  - changeSet:
+      author: drsteini
+      id: "grant.select.${WQP_SCHEMA_NAME}.result.${NWIS_SCHEMA_OWNER_USERNAME}"
+      changes:
+        - sql:
+            sql: grant select on ${WQP_SCHEMA_NAME}.result to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
+        - rollback: revoke select on ${WQP_SCHEMA_NAME}.result from ${NWIS_SCHEMA_OWNER_USERNAME};
+
+  - changeSet:
+      author: drsteini
+      id: "grant.select.${WQP_SCHEMA_NAME}.result_object.${NWIS_SCHEMA_OWNER_USERNAME}"
+      changes:
+        - sql:
+            sql: grant select on ${WQP_SCHEMA_NAME}.result_object to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
+        - rollback: revoke select on ${WQP_SCHEMA_NAME}.result_object from ${NWIS_SCHEMA_OWNER_USERNAME};
+
+  - changeSet:
+      author: drsteini
+      id: "grant.select.${WQP_SCHEMA_NAME}.result_sum.${NWIS_SCHEMA_OWNER_USERNAME}"
+      changes:
+        - sql:
+            sql: grant select on ${WQP_SCHEMA_NAME}.result_sum to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
+        - rollback: revoke select on ${WQP_SCHEMA_NAME}.result_sum from ${NWIS_SCHEMA_OWNER_USERNAME};
 
   - changeSet:
       author: drsteini
@@ -106,6 +234,30 @@ databaseChangeLog:
         - sql:
             sql: grant select on ${WQP_SCHEMA_NAME}.state to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
         - rollback: revoke select on ${WQP_SCHEMA_NAME}.state from ${NWIS_SCHEMA_OWNER_USERNAME};
+
+  - changeSet:
+      author: drsteini
+      id: "grant.select.${WQP_SCHEMA_NAME}.station.${NWIS_SCHEMA_OWNER_USERNAME}"
+      changes:
+        - sql:
+            sql: grant select on ${WQP_SCHEMA_NAME}.station to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
+        - rollback: revoke select on ${WQP_SCHEMA_NAME}.station from ${NWIS_SCHEMA_OWNER_USERNAME};
+
+  - changeSet:
+      author: drsteini
+      id: "grant.select.${WQP_SCHEMA_NAME}.station_object.${NWIS_SCHEMA_OWNER_USERNAME}"
+      changes:
+        - sql:
+            sql: grant select on ${WQP_SCHEMA_NAME}.station_object to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
+        - rollback: revoke select on ${WQP_SCHEMA_NAME}.station_object from ${NWIS_SCHEMA_OWNER_USERNAME};
+
+  - changeSet:
+      author: drsteini
+      id: "grant.select.${WQP_SCHEMA_NAME}.station_sum.${NWIS_SCHEMA_OWNER_USERNAME}"
+      changes:
+        - sql:
+            sql: grant select on ${WQP_SCHEMA_NAME}.station_sum to ${NWIS_SCHEMA_OWNER_USERNAME} with grant option;
+        - rollback: revoke select on ${WQP_SCHEMA_NAME}.station_sum from ${NWIS_SCHEMA_OWNER_USERNAME};
 
   - changeSet:
       author: drsteini
