@@ -110,6 +110,9 @@ ENV WDFN_DB_READ_ONLY_USERNAME="${WDFN_DB_READ_ONLY_USERNAME}"
 ARG WDFN_DB_READ_ONLY_PASSWORD="${DEFAULT_PASSWORD}"
 ENV WDFN_DB_READ_ONLY_PASSWORD="${WDFN_DB_READ_ONLY_PASSWORD}"
 
+ARG OBSERVATION_SCHEMA_NAME=obs
+ENV OBSERVATION_SCHEMA_NAME="${OBSERVATION_SCHEMA_NAME}"
+
 ############################################
 # Grab files for initializing wqp database
 ############################################
