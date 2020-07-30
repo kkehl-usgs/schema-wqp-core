@@ -112,3 +112,19 @@ databaseChangeLog:
             path: countyGeom.sql
             relativeToChangelogFile: true
         - rollback: drop table if exists ${WQP_SCHEMA_NAME}.county_geom cascade;
+
+  - changeSet:
+      author: drsteini
+      id: "create.table.${WQP_SCHEMA_NAME}.tl_2019_us_county_geopkg"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - not:
+          - tableExists:
+              schemaName: ${WQP_SCHEMA_NAME}
+              tableName: county_geom
+      changes:
+        - sqlFile:
+            path: tl2019UsCountyGeopkg.sql
+            relativeToChangelogFile: true
+        - rollback: drop table if exists ${WQP_SCHEMA_NAME}.tl_2019_us_county_geopkg cascade;
