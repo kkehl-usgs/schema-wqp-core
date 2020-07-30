@@ -90,19 +90,19 @@ pipeline {
           then
 
             mkdir $WORKSPACE/geo
-            curl https://cida.usgs.gov/artifactory/wqp/geo/countyGeom.tar.gz -Lo $WORKSPACE/geo/countyGeom.tar.gz
+            curl https://artifactory.wma.usgs.gov/artifactory/wqp/geo/countyGeom.tar.gz -Lo $WORKSPACE/geo/countyGeom.tar.gz
             /usr/bin/tar xzf $WORKSPACE/geo/countyGeom.tar.gz --overwrite -C $WORKSPACE/geo
 
-            curl https://cida.usgs.gov/artifactory/wqp/geo/hc12nometa.tar.gz -Lo $WORKSPACE/geo/hc12nometa.tar.gz
+            curl https://artifactory.wma.usgs.gov/artifactory/wqp/geo/hc12nometa.tar.gz -Lo $WORKSPACE/geo/hc12nometa.tar.gz
             /usr/bin/tar xzf $WORKSPACE/geo/hc12nometa.tar.gz --overwrite -C $WORKSPACE/geo
 
-            curl https://cida.usgs.gov/artifactory/wqp/geo/huc8.tar.gz -Lo $WORKSPACE/geo/huc8.tar.gz
+            curl https://artifactory.wma.usgs.gov/artifactory/wqp/geo/huc8.tar.gz -Lo $WORKSPACE/geo/huc8.tar.gz
             /usr/bin/tar xzf $WORKSPACE/geo/huc8.tar.gz --overwrite -C $WORKSPACE/geo
 
-            curl https://cida.usgs.gov/artifactory/wqp/geo/states.tar.gz -Lo $WORKSPACE/geo/states.tar.gz
+            curl https://artifactory.wma.usgs.gov/artifactory/wqp/geo/states.tar.gz -Lo $WORKSPACE/geo/states.tar.gz
             /usr/bin/tar xzf $WORKSPACE/geo/states.tar.gz --overwrite -C $WORKSPACE/geo
 
-            curl https://cida.usgs.gov/artifactory/wqp/geo/usCounties.tar.gz -Lo $WORKSPACE/geo/usCounties.tar.gz
+            curl https://artifactory.wma.usgs.gov/artifactory/wqp/geo/usCounties.tar.gz -Lo $WORKSPACE/geo/usCounties.tar.gz
             /usr/bin/tar xzf $WORKSPACE/geo/usCounties.tar.gz --overwrite -C $WORKSPACE/geo
 
             docker \
