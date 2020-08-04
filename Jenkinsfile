@@ -90,20 +90,23 @@ pipeline {
           then
 
             mkdir $WORKSPACE/geo
-            curl https://artifactory.wma.usgs.gov/artifactory/wqp/geo/countyGeom.tar.gz -Lo $WORKSPACE/geo/countyGeom.tar.gz
+            curl https://artifactory.wma.usgs.gov/artifactory/wma-binaries/iow/wqp/countyGeom.tar.gz -Lo $WORKSPACE/geo/countyGeom.tar.gz
             /usr/bin/tar xzf $WORKSPACE/geo/countyGeom.tar.gz --overwrite -C $WORKSPACE/geo
 
-            curl https://artifactory.wma.usgs.gov/artifactory/wqp/geo/hc12nometa.tar.gz -Lo $WORKSPACE/geo/hc12nometa.tar.gz
+            curl https://artifactory.wma.usgs.gov/artifactory/wma-binaries/iow/wqp/hc12nometa.tar.gz -Lo $WORKSPACE/geo/hc12nometa.tar.gz
             /usr/bin/tar xzf $WORKSPACE/geo/hc12nometa.tar.gz --overwrite -C $WORKSPACE/geo
 
-            curl https://artifactory.wma.usgs.gov/artifactory/wqp/geo/huc8.tar.gz -Lo $WORKSPACE/geo/huc8.tar.gz
+            curl https://artifactory.wma.usgs.gov/artifactory/wma-binaries/iow/wqp/huc8.tar.gz -Lo $WORKSPACE/geo/huc8.tar.gz
             /usr/bin/tar xzf $WORKSPACE/geo/huc8.tar.gz --overwrite -C $WORKSPACE/geo
 
-            curl https://artifactory.wma.usgs.gov/artifactory/wqp/geo/states.tar.gz -Lo $WORKSPACE/geo/states.tar.gz
+            curl https://artifactory.wma.usgs.gov/artifactory/wma-binaries/iow/wqp/states.tar.gz -Lo $WORKSPACE/geo/states.tar.gz
             /usr/bin/tar xzf $WORKSPACE/geo/states.tar.gz --overwrite -C $WORKSPACE/geo
 
-            curl https://artifactory.wma.usgs.gov/artifactory/wqp/geo/usCounties.tar.gz -Lo $WORKSPACE/geo/usCounties.tar.gz
+            curl https://artifactory.wma.usgs.gov/artifactory/wma-binaries/iow/wqp/usCounties.tar.gz -Lo $WORKSPACE/geo/usCounties.tar.gz
             /usr/bin/tar xzf $WORKSPACE/geo/usCounties.tar.gz --overwrite -C $WORKSPACE/geo
+            
+            curl https://artifactory.wma.usgs.gov/artifactory/wma-binaries/iow/wqp/tl_2019_us_county.sql.tar.gz -Lo $WORKSPACE/geo/tl_2019_us_county.sql.zip
+            /usr/bin/tar xzf $WORKSPACE/geo/tl_2019_us_county.sql.tar.gz --overwrite -C $WORKSPACE/geo            
 
             docker \
               run \
@@ -144,6 +147,15 @@ pipeline {
               -v $WORKSPACE/geo:/usr/src/geo \
               postgres \
               psql -h ${WQP_DATABASE_ADDRESS} -U ${WQP_DB_OWNER_USERNAME} -d ${WQP_DATABASE_NAME} -f /usr/src/geo/US_COUNTIES_DIS_20121015_data.sql
+            
+            docker \
+              run \
+              -e "PGPASSWORD=$WQP_DB_OWNER_PASSWORD" \
+              --rm \
+              -v $WORKSPACE/geo:/usr/src/geo \
+              postgres \
+              psql -h ${WQP_DATABASE_ADDRESS} -U ${WQP_DB_OWNER_USERNAME} -d ${WQP_DATABASE_NAME} -f /usr/src/geo/tl_2019_us_county.sql
+              
           fi
           '''
         }
