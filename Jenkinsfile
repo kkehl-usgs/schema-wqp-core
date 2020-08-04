@@ -59,6 +59,7 @@ pipeline {
           env.NWIS_SCHEMA_OWNER_USERNAME = secretsJson.NWIS_SCHEMA_OWNER_USERNAME
           env.NWIS_SCHEMA_OWNER_PASSWORD = secretsJson.NWIS_SCHEMA_OWNER_PASSWORD
           env.POSTGRES_PASSWORD = secretsJson.POSTGRES_PASSWORD
+          env.ARTIFACTORY_INTERNAL_URL = secretsJson.ARTIFACTORY_INTERNAL_URL
 
           sh '''
           if [ $RUN_LIQUIBASE == true ];
@@ -90,22 +91,22 @@ pipeline {
           then
 
             mkdir $WORKSPACE/geo
-            curl https://artifactory.wma.usgs.gov/artifactory/wma-binaries/iow/wqp/countyGeom.tar.gz -Lo $WORKSPACE/geo/countyGeom.tar.gz
+            curl https://${ARTIFACTORY_INTERNAL_URL}/artifactory/wma-binaries/iow/wqp/countyGeom.tar.gz -Lo $WORKSPACE/geo/countyGeom.tar.gz
             /usr/bin/tar xzf $WORKSPACE/geo/countyGeom.tar.gz --overwrite -C $WORKSPACE/geo
 
-            curl https://artifactory.wma.usgs.gov/artifactory/wma-binaries/iow/wqp/hc12nometa.tar.gz -Lo $WORKSPACE/geo/hc12nometa.tar.gz
+            curl https://${ARTIFACTORY_INTERNAL_URL}/artifactory/wma-binaries/iow/wqp/hc12nometa.tar.gz -Lo $WORKSPACE/geo/hc12nometa.tar.gz
             /usr/bin/tar xzf $WORKSPACE/geo/hc12nometa.tar.gz --overwrite -C $WORKSPACE/geo
 
-            curl https://artifactory.wma.usgs.gov/artifactory/wma-binaries/iow/wqp/huc8.tar.gz -Lo $WORKSPACE/geo/huc8.tar.gz
+            curl https://${ARTIFACTORY_INTERNAL_URL}/artifactory/wma-binaries/iow/wqp/huc8.tar.gz -Lo $WORKSPACE/geo/huc8.tar.gz
             /usr/bin/tar xzf $WORKSPACE/geo/huc8.tar.gz --overwrite -C $WORKSPACE/geo
 
-            curl https://artifactory.wma.usgs.gov/artifactory/wma-binaries/iow/wqp/states.tar.gz -Lo $WORKSPACE/geo/states.tar.gz
+            curl https://${ARTIFACTORY_INTERNAL_URL}/artifactory/wma-binaries/iow/wqp/states.tar.gz -Lo $WORKSPACE/geo/states.tar.gz
             /usr/bin/tar xzf $WORKSPACE/geo/states.tar.gz --overwrite -C $WORKSPACE/geo
 
-            curl https://artifactory.wma.usgs.gov/artifactory/wma-binaries/iow/wqp/usCounties.tar.gz -Lo $WORKSPACE/geo/usCounties.tar.gz
+            curl https://${ARTIFACTORY_INTERNAL_URL}/artifactory/wma-binaries/iow/wqp/usCounties.tar.gz -Lo $WORKSPACE/geo/usCounties.tar.gz
             /usr/bin/tar xzf $WORKSPACE/geo/usCounties.tar.gz --overwrite -C $WORKSPACE/geo
             
-            curl https://artifactory.wma.usgs.gov/artifactory/wma-binaries/iow/wqp/tl_2019_us_county.sql.tar.gz -Lo $WORKSPACE/geo/tl_2019_us_county.sql.zip
+            curl https://${ARTIFACTORY_INTERNAL_URL}/artifactory/wma-binaries/iow/wqp/tl_2019_us_county.sql.tar.gz -Lo $WORKSPACE/geo/tl_2019_us_county.sql.zip
             /usr/bin/tar xzf $WORKSPACE/geo/tl_2019_us_county.sql.tar.gz --overwrite -C $WORKSPACE/geo            
 
             docker \
