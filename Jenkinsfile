@@ -105,8 +105,8 @@ pipeline {
             curl https://artifactory.wma.usgs.gov/artifactory/wma-binaries/iow/wqp/usCounties.tar.gz -Lo $WORKSPACE/geo/usCounties.tar.gz
             /usr/bin/tar xzf $WORKSPACE/geo/usCounties.tar.gz --overwrite -C $WORKSPACE/geo
             
-            curl https://artifactory.wma.usgs.gov/artifactory/wma-binaries/iow/wqp/tl_2019_us_county.sql.zip -Lo $WORKSPACE/geo/tl_2019_us_county.sql.zip
-            /usr/bin/unzip xzf $WORKSPACE/geo/tl_2019_us_county.sql.zip --overwrite -C $WORKSPACE/geo            
+            curl https://artifactory.wma.usgs.gov/artifactory/wma-binaries/iow/wqp/tl_2019_us_county.sql.tar.gz -Lo $WORKSPACE/geo/tl_2019_us_county.sql.zip
+            /usr/bin/tar xzf $WORKSPACE/geo/tl_2019_us_county.sql.tar.gz --overwrite -C $WORKSPACE/geo            
 
             docker \
               run \
