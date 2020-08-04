@@ -122,7 +122,7 @@ databaseChangeLog:
         - not:
           - tableExists:
               schemaName: ${WQP_SCHEMA_NAME}
-              tableName: county_geom
+              tableName: tl_2019_us_county_geopkg
       changes:
         - sqlFile:
             path: tl2019UsCountyGeopkg.sql
