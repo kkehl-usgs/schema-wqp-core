@@ -16,3 +16,17 @@ databaseChangeLog:
       changes:
         - sql: create index if not exists us_counties_dis_20121015_geom on ${WQP_SCHEMA_NAME}.us_counties_dis_20121015 using gist (geom) with (fillfactor = 100);
         - rollback: drop index if exists ${WQP_SCHEMA_NAME}.us_counties_dis_20121015_geom;
+
+  - changeSet:
+      author: drsteini
+      id: "create.index.${WQP_SCHEMA_NAME}.tl_2019_us_county_geopkg_wkb_geometry_geom_idx"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - not:
+          - indexExists:
+              WQP_SCHEMA_NAME: ${WQP_SCHEMA_NAME}
+              indexName: tl_2019_us_county_geopkg_wkb_geometry_geom_idx
+      changes:
+        - sql: create index if not exists tl_2019_us_county_geopkg_wkb_geometry_geom_idx on ${WQP_SCHEMA_NAME}.tl_2019_us_county_geopkg using gist (wkb_geometry) with (fillfactor = 100);
+        - rollback: drop index if exists ${WQP_SCHEMA_NAME}.tl_2019_us_county_geopkg_wkb_geometry_geom_idx;
