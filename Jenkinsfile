@@ -91,11 +91,12 @@ pipeline {
           then
 
             mkdir $WORKSPACE/geo
+
             curl https://${ARTIFACTORY_INTERNAL_URL}/artifactory/wma-binaries/iow/wqp/countyGeom.tar.gz -Lo $WORKSPACE/geo/countyGeom.tar.gz
             /usr/bin/tar xzf $WORKSPACE/geo/countyGeom.tar.gz --overwrite -C $WORKSPACE/geo
 
-            curl https://${ARTIFACTORY_INTERNAL_URL}/artifactory/wma-binaries/iow/wqp/hc12nometa.tar.gz -Lo $WORKSPACE/geo/hc12nometa.tar.gz
-            /usr/bin/tar xzf $WORKSPACE/geo/hc12nometa.tar.gz --overwrite -C $WORKSPACE/geo
+            curl https://${ARTIFACTORY_INTERNAL_URL}/artifactory/wma-binaries/iow/wqp/hu12nhdplusv2.sql.tar.gz -Lo $WORKSPACE/geo/hu12nhdplusv2.sql.tar.gz
+            /usr/bin/tar xzf $WORKSPACE/geo/hu12nhdplusv2.sql.tar.gz --overwrite -C $WORKSPACE/geo
 
             curl https://${ARTIFACTORY_INTERNAL_URL}/artifactory/wma-binaries/iow/wqp/huc8.tar.gz -Lo $WORKSPACE/geo/huc8.tar.gz
             /usr/bin/tar xzf $WORKSPACE/geo/huc8.tar.gz --overwrite -C $WORKSPACE/geo
@@ -105,9 +106,9 @@ pipeline {
 
             curl https://${ARTIFACTORY_INTERNAL_URL}/artifactory/wma-binaries/iow/wqp/usCounties.tar.gz -Lo $WORKSPACE/geo/usCounties.tar.gz
             /usr/bin/tar xzf $WORKSPACE/geo/usCounties.tar.gz --overwrite -C $WORKSPACE/geo
-            
+
             curl https://${ARTIFACTORY_INTERNAL_URL}/artifactory/wma-binaries/iow/wqp/tl_2019_us_county.sql.tar.gz -Lo $WORKSPACE/geo/tl_2019_us_county.sql.tar.gz
-            /usr/bin/tar xzf $WORKSPACE/geo/tl_2019_us_county.sql.tar.gz --overwrite -C $WORKSPACE/geo            
+            /usr/bin/tar xzf $WORKSPACE/geo/tl_2019_us_county.sql.tar.gz --overwrite -C $WORKSPACE/geo
 
             docker \
               run \
@@ -123,7 +124,15 @@ pipeline {
               --rm \
               -v $WORKSPACE/geo:/usr/src/geo \
               postgres \
-              psql -h ${WQP_DATABASE_ADDRESS} -U ${WQP_DB_OWNER_USERNAME} -d ${WQP_DATABASE_NAME} -f /usr/src/geo/HUC12NOMETA_data.sql
+              psql -h ${WQP_DATABASE_ADDRESS} -U ${WQP_DB_OWNER_USERNAME} -d ${WQP_DATABASE_NAME} -f /usr/src/geo/hu12_nhdplusv2.sql
+
+            docker \
+              run \
+              -e "PGPASSWORD=$WQP_DB_OWNER_PASSWORD" \
+              --rm \
+              -v $WORKSPACE/sql:/usr/src/sql \
+              postgres \
+              psql -h ${WQP_DATABASE_ADDRESS} -U ${WQP_DB_OWNER_USERNAME} -d ${WQP_DATABASE_NAME} -f /usr/src/sql/huc12_transform.sql
 
             docker \
               run \
@@ -148,7 +157,7 @@ pipeline {
               -v $WORKSPACE/geo:/usr/src/geo \
               postgres \
               psql -h ${WQP_DATABASE_ADDRESS} -U ${WQP_DB_OWNER_USERNAME} -d ${WQP_DATABASE_NAME} -f /usr/src/geo/US_COUNTIES_DIS_20121015_data.sql
-            
+
             docker \
               run \
               -e "PGPASSWORD=$WQP_DB_OWNER_PASSWORD" \
@@ -156,7 +165,7 @@ pipeline {
               -v $WORKSPACE/geo:/usr/src/geo \
               postgres \
               psql -h ${WQP_DATABASE_ADDRESS} -U ${WQP_DB_OWNER_USERNAME} -d ${WQP_DATABASE_NAME} -f /usr/src/geo/tl_2019_us_county.sql
-              
+
           fi
           '''
         }
