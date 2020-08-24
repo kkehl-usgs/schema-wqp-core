@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - preConditions:
+    - dbms:
+        type: postgresql
+
+  - changeSet:
+      author: kkehl
+      id: "create.index.${WQP_SCHEMA_NAME}.project_dim_data_source_id_idx"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - not:
+          - indexExists:
+              WQP_SCHEMA_NAME: ${WQP_SCHEMA_NAME}
+              indexName: project_dim_data_source_id_idx
+      changes:
+        - sql: create index if not exists project_dim_data_source_id_idx on ${WQP_SCHEMA_NAME}.project_dim(data_source_id);
+        - rollback: drop index if exists ${WQP_SCHEMA_NAME}.project_dim_data_source_id_idx;

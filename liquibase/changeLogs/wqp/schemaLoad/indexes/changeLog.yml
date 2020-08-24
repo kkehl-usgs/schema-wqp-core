@@ -12,5 +12,9 @@ databaseChangeLog:
       relativeToChangelogFile: true
 
   - include:
+      file: "project_dim/changeLog.yml"
+      relativeToChangelogFile: true    
+
+  - include:
       file: "states/changeLog.yml"
       relativeToChangelogFile: true
