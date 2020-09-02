@@ -33,3 +33,37 @@ databaseChangeLog:
             relativeToChangelogFile: true
         - rollback: drop table if exists ${WQP_SCHEMA_NAME}.huc12nometa cascade;
 
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.huc12nometa.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                      join pg_catalog.pg_namespace AS ns
+                      on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'huc12nometa'
+                     and (relkind = 'r' or relkind = 'p') and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sql: alter table if exists ${WQP_SCHEMA_NAME}.huc12nometa set logged
+        - rollback: alter table if exists ${WQP_SCHEMA_NAME}.huc12nometa set unlogged
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.huc8_conus_hi_ak_pr_dis.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                      join pg_catalog.pg_namespace AS ns
+                      on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'huc8_conus_hi_ak_pr_dis'
+                     and (relkind = 'r' or relkind = 'p') and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sql: alter table if exists ${WQP_SCHEMA_NAME}.huc8_conus_hi_ak_pr_dis set logged
+        - rollback: alter table if exists ${WQP_SCHEMA_NAME}.huc8_conus_hi_ak_pr_dis set unlogged
+
