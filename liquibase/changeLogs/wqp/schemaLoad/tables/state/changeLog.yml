@@ -96,3 +96,89 @@ databaseChangeLog:
             path: states.sql
             relativeToChangelogFile: true
         - rollback: drop table if exists ${WQP_SCHEMA_NAME}.states cascade;
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.state_biodata.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                      join pg_catalog.pg_namespace AS ns
+                      on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'state_biodata'
+                     and (relkind = 'r' or relkind = 'p') and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sql: alter table if exists ${WQP_SCHEMA_NAME}.state_biodata set logged
+        - rollback: alter table if exists ${WQP_SCHEMA_NAME}.state_biodata set unlogged
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.state_nwis.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                      join pg_catalog.pg_namespace AS ns
+                      on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'state_nwis'
+                     and (relkind = 'r' or relkind = 'p') and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sql: alter table if exists ${WQP_SCHEMA_NAME}.state_nwis set logged
+        - rollback: alter table if exists ${WQP_SCHEMA_NAME}.state_nwis set unlogged
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.states.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                      join pg_catalog.pg_namespace AS ns
+                      on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'states'
+                     and (relkind = 'r' or relkind = 'p') and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sql: alter table if exists ${WQP_SCHEMA_NAME}.states set logged
+        - rollback: alter table if exists ${WQP_SCHEMA_NAME}.states set unlogged
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.state_stewards.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                      join pg_catalog.pg_namespace AS ns
+                      on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'state_stewards'
+                     and (relkind = 'r' or relkind = 'p') and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sql: alter table if exists ${WQP_SCHEMA_NAME}.state_stewards set logged
+        - rollback: alter table if exists ${WQP_SCHEMA_NAME}.state_stewards set unlogged
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.state_storet.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                      join pg_catalog.pg_namespace AS ns
+                      on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'state_storet'
+                     and (relkind = 'r' or relkind = 'p') and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sql: alter table if exists ${WQP_SCHEMA_NAME}.state_storet set logged
+        - rollback: alter table if exists ${WQP_SCHEMA_NAME}.state_storet set unlogged
+

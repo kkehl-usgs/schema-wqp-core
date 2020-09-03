@@ -12,12 +12,13 @@ ENV JDBC_JAR=$A_JDBC_JAR
 ENV LIQUIBASE_HOME $HOME
 ENV LIQUIBASE_WORKSPACE_WQP $LIQUIBASE_HOME/workspace/wqp
 ENV LOCALONLY "-c listen_addresses='127.0.0.1, ::1'"
+ENV LIQUIBASE_TAG="v$LIQUIBASE_VERSION"
 
-ADD https://github.com/liquibase/liquibase/releases/download/liquibase-parent-$LIQUIBASE_VERSION/liquibase-$LIQUIBASE_VERSION-bin.tar.gz $LIQUIBASE_HOME/
+ADD https://github.com/liquibase/liquibase/releases/download/$LIQUIBASE_TAG/liquibase-$LIQUIBASE_VERSION.tar.gz $LIQUIBASE_HOME/
 
 ADD https://jdbc.postgresql.org/download/$JDBC_JAR $LIQUIBASE_HOME/lib/
 
-RUN tar -xzf $LIQUIBASE_HOME/liquibase-$LIQUIBASE_VERSION-bin.tar.gz -C $LIQUIBASE_HOME/
+RUN tar -xzf $LIQUIBASE_HOME/liquibase-$LIQUIBASE_VERSION.tar.gz -C $LIQUIBASE_HOME/
 
 RUN chmod -R 777 $LIQUIBASE_HOME
 

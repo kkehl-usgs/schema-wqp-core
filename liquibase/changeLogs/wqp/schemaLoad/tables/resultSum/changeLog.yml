@@ -81,3 +81,72 @@ databaseChangeLog:
             path: resultSumStoret.sql
             relativeToChangelogFile: true
         - rollback: drop table if exists ${WQP_SCHEMA_NAME}.result_sum_storet cascade;
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.result_sum_biodata.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                      join pg_catalog.pg_namespace AS ns
+                      on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'result_sum_biodata'
+                     and (relkind = 'r' or relkind = 'p') and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sql: alter table if exists ${WQP_SCHEMA_NAME}.result_sum_biodata set logged
+        - rollback: alter table if exists ${WQP_SCHEMA_NAME}.result_sum_biodata set unlogged
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.result_sum_nwis.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                      join pg_catalog.pg_namespace AS ns
+                      on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'result_sum_nwis'
+                     and (relkind = 'r' or relkind = 'p') and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sql: alter table if exists ${WQP_SCHEMA_NAME}.result_sum_nwis set logged
+        - rollback: alter table if exists ${WQP_SCHEMA_NAME}.result_sum_nwis set unlogged
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.result_sum_stewards.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                      join pg_catalog.pg_namespace AS ns
+                      on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'result_sum_stewards'
+                     and (relkind = 'r' or relkind = 'p') and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sql: alter table if exists ${WQP_SCHEMA_NAME}.result_sum_stewards set logged
+        - rollback: alter table if exists ${WQP_SCHEMA_NAME}.result_sum_stewards set unlogged
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.result_sum_storet.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                      join pg_catalog.pg_namespace AS ns
+                      on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'result_sum_storet'
+                     and (relkind = 'r' or relkind = 'p') and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sql: alter table if exists ${WQP_SCHEMA_NAME}.result_sum_storet set logged
+        - rollback: alter table if exists ${WQP_SCHEMA_NAME}.result_sum_storet set unlogged
+
