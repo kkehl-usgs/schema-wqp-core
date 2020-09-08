@@ -5,7 +5,7 @@ databaseChangeLog:
       
   - changeSet:
       author: zmoore
-      id: "create.table.${WQP_SCHEMA_NAME}.prj_ml_weighting"
+      id: "create.table.${WQP_SCHEMA_NAME}.prj_ml_weighting.v2"
       preConditions:
         - onFail: MARK_RAN
         - onError: HALT

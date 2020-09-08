@@ -5,7 +5,7 @@ databaseChangeLog:
 
   - changeSet:
       author: drsteini
-      id: "create.table.${WQP_SCHEMA_NAME}.org_grouping"
+      id: "create.table.${WQP_SCHEMA_NAME}.org_grouping.v2"
       preConditions:
         - onFail: MARK_RAN
         - onError: HALT

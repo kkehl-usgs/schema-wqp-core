@@ -5,7 +5,7 @@ databaseChangeLog:
 
   - changeSet:
       author: skaymen
-      id: "create.table.${WQP_SCHEMA_NAME}.monitoring_loc"
+      id: "create.table.${WQP_SCHEMA_NAME}.monitoring_loc.v2"
       preConditions:
         - onFail: MARK_RAN
         - onError: HALT

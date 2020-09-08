@@ -5,7 +5,7 @@ databaseChangeLog:
 
   - changeSet:
       author: drsteini
-      id: "create.table.${WQP_SCHEMA_NAME}.result_sum"
+      id: "create.table.${WQP_SCHEMA_NAME}.result_sum.v2"
       preConditions:
         - onFail: MARK_RAN
         - onError: HALT

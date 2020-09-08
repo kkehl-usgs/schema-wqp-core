@@ -1,4 +1,4 @@
-create unlogged table if not exists ${WQP_SCHEMA_NAME}.result_sum
+create table if not exists ${WQP_SCHEMA_NAME}.result_sum
 (data_source_id                 smallint
 ,data_source                    character varying (8)
 ,station_id                     numeric

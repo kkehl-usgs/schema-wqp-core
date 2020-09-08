@@ -1,0 +1,896 @@
+databaseChangeLog:
+  - preConditions:
+    - dbms:
+        type: postgresql
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.station.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                    join pg_catalog.pg_namespace AS ns
+                    on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'station'
+                   and relkind = 'p' and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sqlFile:
+            path: station/detachPartitions.sql
+            relativeToChangelogFile: true
+        - dropTable: 
+            schemaName: ${WQP_SCHEMA_NAME}
+            tableName:  station
+        - sqlFile:
+            path: station/station.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: station/reattachPartitions.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.station_object.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                    join pg_catalog.pg_namespace AS ns
+                    on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'station_object'
+                   and relkind = 'p' and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sqlFile:
+            path: stationObject/detachPartitions.sql
+            relativeToChangelogFile: true
+        - dropTable: 
+            schemaName: ${WQP_SCHEMA_NAME}
+            tableName:  station_object
+        - sqlFile:
+            path: stationObject/stationObject.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: stationObject/reattachPartitions.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.station_sum.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                    join pg_catalog.pg_namespace AS ns
+                    on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'station_sum'
+                   and relkind = 'p' and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sqlFile:
+            path: stationSum/detachPartitions.sql
+            relativeToChangelogFile: true
+        - dropTable: 
+            schemaName: ${WQP_SCHEMA_NAME}
+            tableName:  station_sum
+        - sqlFile:
+            path: stationSum/stationSum.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: stationSum/reattachPartitions.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.activity.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                    join pg_catalog.pg_namespace AS ns
+                    on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'activity'
+                   and relkind = 'p' and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sqlFile:
+            path: activity/detachPartitions.sql
+            relativeToChangelogFile: true
+        - dropTable: 
+            schemaName: ${WQP_SCHEMA_NAME}
+            tableName:  activity
+        - sqlFile:
+            path: activity/activity.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: activity/reattachPartitions.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.activity_object.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                    join pg_catalog.pg_namespace AS ns
+                    on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'activity_object'
+                   and relkind = 'p' and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sqlFile:
+            path: activityObject/detachPartitions.sql
+            relativeToChangelogFile: true
+        - dropTable: 
+            schemaName: ${WQP_SCHEMA_NAME}
+            tableName:  activity_object
+        - sqlFile:
+            path: activityObject/activityObject.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: activityObject/reattachPartitions.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.activity_sum.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                    join pg_catalog.pg_namespace AS ns
+                    on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'activity_sum'
+                   and relkind = 'p' and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sqlFile:
+            path: activitySum/detachPartitions.sql
+            relativeToChangelogFile: true
+        - dropTable: 
+            schemaName: ${WQP_SCHEMA_NAME}
+            tableName:  activity_sum
+        - sqlFile:
+            path: activitySum/activitySum.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: activitySum/reattachPartitions.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.act_metric.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                    join pg_catalog.pg_namespace AS ns
+                    on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'act_metric'
+                   and relkind = 'p' and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sqlFile:
+            path: actMetric/detachPartitions.sql
+            relativeToChangelogFile: true
+        - dropTable: 
+            schemaName: ${WQP_SCHEMA_NAME}
+            tableName:  act_metric
+        - sqlFile:
+            path: actMetric/actMetric.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: actMetric/reattachPartitions.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.assemblage.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                    join pg_catalog.pg_namespace AS ns
+                    on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'assemblage'
+                   and relkind = 'p' and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sqlFile:
+            path: assemblage/detachPartitions.sql
+            relativeToChangelogFile: true
+        - dropTable: 
+            schemaName: ${WQP_SCHEMA_NAME}
+            tableName:  assemblage
+        - sqlFile:
+            path: assemblage/assemblage.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: assemblage/reattachPartitions.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.bio_hab_metric.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                    join pg_catalog.pg_namespace AS ns
+                    on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'bio_hab_metric'
+                   and relkind = 'p' and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sqlFile:
+            path: bioHabMetric/detachPartitions.sql
+            relativeToChangelogFile: true
+        - dropTable: 
+            schemaName: ${WQP_SCHEMA_NAME}
+            tableName:  bio_hab_metric
+        - sqlFile:
+            path: bioHabMetric/bioHabMetric.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: bioHabMetric/reattachPartitions.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.char_name.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                    join pg_catalog.pg_namespace AS ns
+                    on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'char_name'
+                   and relkind = 'p' and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sqlFile:
+            path: charName/detachPartitions.sql
+            relativeToChangelogFile: true
+        - dropTable: 
+            schemaName: ${WQP_SCHEMA_NAME}
+            tableName:  char_name
+        - sqlFile:
+            path: charName/charName.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: charName/reattachPartitions.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.char_type.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                    join pg_catalog.pg_namespace AS ns
+                    on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'char_type'
+                   and relkind = 'p' and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sqlFile:
+            path: charType/detachPartitions.sql
+            relativeToChangelogFile: true
+        - dropTable: 
+            schemaName: ${WQP_SCHEMA_NAME}
+            tableName:  char_type
+        - sqlFile:
+            path: charType/charType.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: charType/reattachPartitions.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.country.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                    join pg_catalog.pg_namespace AS ns
+                    on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'country'
+                   and relkind = 'p' and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sqlFile:
+            path: country/detachPartitions.sql
+            relativeToChangelogFile: true
+        - dropTable: 
+            schemaName: ${WQP_SCHEMA_NAME}
+            tableName:  country
+        - sqlFile:
+            path: country/country.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: country/reattachPartitions.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.county.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                    join pg_catalog.pg_namespace AS ns
+                    on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'county'
+                   and relkind = 'p' and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sqlFile:
+            path: county/detachPartitions.sql
+            relativeToChangelogFile: true
+        - dropTable: 
+            schemaName: ${WQP_SCHEMA_NAME}
+            tableName:  county
+        - sqlFile:
+            path: county/county.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: county/reattachPartitions.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.ml_grouping.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                    join pg_catalog.pg_namespace AS ns
+                    on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'ml_grouping'
+                   and relkind = 'p' and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sqlFile:
+            path: mlGrouping/detachPartitions.sql
+            relativeToChangelogFile: true
+        - dropTable: 
+            schemaName: ${WQP_SCHEMA_NAME}
+            tableName:  ml_grouping
+        - sqlFile:
+            path: mlGrouping/mlGrouping.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: mlGrouping/reattachPartitions.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.monitoring_loc.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                    join pg_catalog.pg_namespace AS ns
+                    on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'monitoring_loc'
+                   and relkind = 'p' and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sqlFile:
+            path: monitoringLoc/detachPartitions.sql
+            relativeToChangelogFile: true
+        - dropTable: 
+            schemaName: ${WQP_SCHEMA_NAME}
+            tableName:  monitoring_loc
+        - sqlFile:
+            path: monitoringLoc/monitoringLoc.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: monitoringLoc/reattachPartitions.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.organization.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                    join pg_catalog.pg_namespace AS ns
+                    on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'organization'
+                   and relkind = 'p' and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sqlFile:
+            path: organization/detachPartitions.sql
+            relativeToChangelogFile: true
+        - dropTable: 
+            schemaName: ${WQP_SCHEMA_NAME}
+            tableName:  organization
+        - sqlFile:
+            path: organization/organization.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: organization/reattachPartitions.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.organization_sum.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                    join pg_catalog.pg_namespace AS ns
+                    on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'organization_sum'
+                   and relkind = 'p' and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sqlFile:
+            path: organizationSum/detachPartitions.sql
+            relativeToChangelogFile: true
+        - dropTable: 
+            schemaName: ${WQP_SCHEMA_NAME}
+            tableName:  organization_sum
+        - sqlFile:
+            path: organizationSum/organizationSum.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: organizationSum/reattachPartitions.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.org_data.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                    join pg_catalog.pg_namespace AS ns
+                    on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'org_data'
+                   and relkind = 'p' and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sqlFile:
+            path: orgData/detachPartitions.sql
+            relativeToChangelogFile: true
+        - dropTable: 
+            schemaName: ${WQP_SCHEMA_NAME}
+            tableName:  org_data
+        - sqlFile:
+            path: orgData/orgData.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: orgData/reattachPartitions.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.org_grouping.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                    join pg_catalog.pg_namespace AS ns
+                    on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'org_grouping'
+                   and relkind = 'p' and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sqlFile:
+            path: orgGrouping/detachPartitions.sql
+            relativeToChangelogFile: true
+        - dropTable: 
+            schemaName: ${WQP_SCHEMA_NAME}
+            tableName:  org_grouping
+        - sqlFile:
+            path: orgGrouping/orgGrouping.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: orgGrouping/reattachPartitions.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.prj_ml_weighting.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                    join pg_catalog.pg_namespace AS ns
+                    on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'prj_ml_weighting'
+                   and relkind = 'p' and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sqlFile:
+            path: prjMLWeighting/detachPartitions.sql
+            relativeToChangelogFile: true
+        - dropTable: 
+            schemaName: ${WQP_SCHEMA_NAME}
+            tableName:  prj_ml_weighting
+        - sqlFile:
+            path: prjMLWeighting/prjMLWeighting.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: prjMLWeighting/reattachPartitions.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.project.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                    join pg_catalog.pg_namespace AS ns
+                    on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'project'
+                   and relkind = 'p' and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sqlFile:
+            path: project/detachPartitions.sql
+            relativeToChangelogFile: true
+        - dropTable: 
+            schemaName: ${WQP_SCHEMA_NAME}
+            tableName:  project
+        - sqlFile:
+            path: project/project.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: project/reattachPartitions.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.project_data.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                    join pg_catalog.pg_namespace AS ns
+                    on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'project_data'
+                   and relkind = 'p' and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sqlFile:
+            path: projectData/detachPartitions.sql
+            relativeToChangelogFile: true
+        - dropTable: 
+            schemaName: ${WQP_SCHEMA_NAME}
+            tableName:  project_data
+        - sqlFile:
+            path: projectData/projectData.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: projectData/reattachPartitions.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.project_dim.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                    join pg_catalog.pg_namespace AS ns
+                    on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'project_dim'
+                   and relkind = 'p' and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sqlFile:
+            path: projectDim/detachPartitions.sql
+            relativeToChangelogFile: true
+        - dropTable: 
+            schemaName: ${WQP_SCHEMA_NAME}
+            tableName:  project_dim
+        - sqlFile:
+            path: projectDim/projectDim.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: projectDim/reattachPartitions.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.project_object.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                    join pg_catalog.pg_namespace AS ns
+                    on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'project_object'
+                   and relkind = 'p' and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sqlFile:
+            path: projectObject/detachPartitions.sql
+            relativeToChangelogFile: true
+        - dropTable: 
+            schemaName: ${WQP_SCHEMA_NAME}
+            tableName:  project_object
+        - sqlFile:
+            path: projectObject/projectObject.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: projectObject/reattachPartitions.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.qwportal_summary.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                    join pg_catalog.pg_namespace AS ns
+                    on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'qwportal_summary'
+                   and relkind = 'p' and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sqlFile:
+            path: qwportalSummary/detachPartitions.sql
+            relativeToChangelogFile: true
+        - dropTable: 
+            schemaName: ${WQP_SCHEMA_NAME}
+            tableName:  qwportal_summary
+        - sqlFile:
+            path: qwportalSummary/qwportalSummary.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: qwportalSummary/reattachPartitions.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.r_detect_qnt_lmt.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                    join pg_catalog.pg_namespace AS ns
+                    on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'r_detect_qnt_lmt'
+                   and relkind = 'p' and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sqlFile:
+            path: rDetectQntLmt/detachPartitions.sql
+            relativeToChangelogFile: true
+        - dropTable: 
+            schemaName: ${WQP_SCHEMA_NAME}
+            tableName:  r_detect_qnt_lmt
+        - sqlFile:
+            path: rDetectQntLmt/rDetectQntLmt.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: rDetectQntLmt/reattachPartitions.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.result.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                    join pg_catalog.pg_namespace AS ns
+                    on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'result'
+                   and relkind = 'p' and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sqlFile:
+            path: result/detachPartitions.sql
+            relativeToChangelogFile: true
+        - dropTable: 
+            schemaName: ${WQP_SCHEMA_NAME}
+            tableName:  result
+        - sqlFile:
+            path: result/result.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: result/reattachPartitions.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.result_object.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                    join pg_catalog.pg_namespace AS ns
+                    on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'result_object'
+                   and relkind = 'p' and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sqlFile:
+            path: resultObject/detachPartitions.sql
+            relativeToChangelogFile: true
+        - dropTable: 
+            schemaName: ${WQP_SCHEMA_NAME}
+            tableName:  result_object
+        - sqlFile:
+            path: resultObject/resultObject.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: resultObject/reattachPartitions.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.result_sum.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                    join pg_catalog.pg_namespace AS ns
+                    on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'result_sum'
+                   and relkind = 'p' and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sqlFile:
+            path: resultSum/detachPartitions.sql
+            relativeToChangelogFile: true
+        - dropTable: 
+            schemaName: ${WQP_SCHEMA_NAME}
+            tableName:  result_sum
+        - sqlFile:
+            path: resultSum/resultSum.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: resultSum/reattachPartitions.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.sample_media.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                    join pg_catalog.pg_namespace AS ns
+                    on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'sample_media'
+                   and relkind = 'p' and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sqlFile:
+            path: sampleMedia/detachPartitions.sql
+            relativeToChangelogFile: true
+        - dropTable: 
+            schemaName: ${WQP_SCHEMA_NAME}
+            tableName:  sample_media
+        - sqlFile:
+            path: sampleMedia/sampleMedia.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: sampleMedia/reattachPartitions.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.site_type.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                    join pg_catalog.pg_namespace AS ns
+                    on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'site_type'
+                   and relkind = 'p' and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sqlFile:
+            path: siteType/detachPartitions.sql
+            relativeToChangelogFile: true
+        - dropTable: 
+            schemaName: ${WQP_SCHEMA_NAME}
+            tableName:  site_type
+        - sqlFile:
+            path: siteType/siteType.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: siteType/reattachPartitions.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.state.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                    join pg_catalog.pg_namespace AS ns
+                    on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'state'
+                   and relkind = 'p' and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sqlFile:
+            path: state/detachPartitions.sql
+            relativeToChangelogFile: true
+        - dropTable: 
+            schemaName: ${WQP_SCHEMA_NAME}
+            tableName:  state
+        - sqlFile:
+            path: state/state.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: state/reattachPartitions.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.taxa_name.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                    join pg_catalog.pg_namespace AS ns
+                    on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'taxa_name'
+                   and relkind = 'p' and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sqlFile:
+            path: taxaName/detachPartitions.sql
+            relativeToChangelogFile: true
+        - dropTable: 
+            schemaName: ${WQP_SCHEMA_NAME}
+            tableName:  taxa_name
+        - sqlFile:
+            path: taxaName/taxaName.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: taxaName/reattachPartitions.sql
+            relativeToChangelogFile: true
+
