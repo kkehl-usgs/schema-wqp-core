@@ -2,7 +2,6 @@
 -- Reattching the table partitions.,
 -- Due to postgres bug, the partitions must be detached first,
 -- table dropped and recreated, then the partitions reattached.
-ALTER TABLE wqp.bio_hab_metric ATTACH PARTITION wqp.bio_hab_metric_biodata for values in (4);
 ALTER TABLE wqp.bio_hab_metric ATTACH PARTITION wqp.bio_hab_metric_nwis for values in (2);
 ALTER TABLE wqp.bio_hab_metric ATTACH PARTITION wqp.bio_hab_metric_stewards for values in (1);
 ALTER TABLE wqp.bio_hab_metric ATTACH PARTITION wqp.bio_hab_metric_storet for values in (3);
