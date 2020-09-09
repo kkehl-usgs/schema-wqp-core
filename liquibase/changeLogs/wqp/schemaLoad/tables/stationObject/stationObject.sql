@@ -1,4 +1,4 @@
-create unlogged table if not exists ${WQP_SCHEMA_NAME}.station_object
+create table if not exists ${WQP_SCHEMA_NAME}.station_object
 (data_source_id                 smallint
 ,object_id                      numeric
 ,data_source                    character varying (8)
