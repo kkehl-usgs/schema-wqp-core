@@ -5,6 +5,34 @@ databaseChangeLog:
 
   - changeSet:
       author: eorosz
+      id: "alter.table.${WQP_SCHEMA_NAME}.project_data.set.logged"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - sqlCheck:
+          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
+                    join pg_catalog.pg_namespace AS ns
+                    on c.relnamespace = ns.oid
+                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'project_data'
+                   and relkind = 'p' and relpersistence = 'u'"
+          - expectedResult: "1"
+      changes:
+        - sqlFile:
+            path: projectData/detachPartitions.sql
+            relativeToChangelogFile: true
+        - dropTable:
+            schemaName: ${WQP_SCHEMA_NAME}
+            tableName:  project_data
+            cascadeConstraints: true
+        - sqlFile:
+            path: projectData/projectData.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: projectData/reattachPartitions.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      author: eorosz
       id: "alter.table.${WQP_SCHEMA_NAME}.station.set.logged"
       preConditions:
         - onFail: MARK_RAN
@@ -589,34 +617,6 @@ databaseChangeLog:
             relativeToChangelogFile: true
         - sqlFile:
             path: project/reattachPartitions.sql
-            relativeToChangelogFile: true
-
-  - changeSet:
-      author: eorosz
-      id: "alter.table.${WQP_SCHEMA_NAME}.project_data.set.logged"
-      preConditions:
-        - onFail: MARK_RAN
-        - onError: HALT
-        - sqlCheck:
-          - sql: "SELECT count(*) from pg_catalog.pg_class AS c
-                    join pg_catalog.pg_namespace AS ns
-                    on c.relnamespace = ns.oid
-                  WHERE nspname = '${WQP_SCHEMA_NAME}' and relname = 'project_data'
-                   and relkind = 'p' and relpersistence = 'u'"
-          - expectedResult: "1"
-      changes:
-        - sqlFile:
-            path: projectData/detachPartitions.sql
-            relativeToChangelogFile: true
-        - dropTable: 
-            schemaName: ${WQP_SCHEMA_NAME}
-            tableName:  project_data
-            cascadeConstraints: true
-        - sqlFile:
-            path: projectData/projectData.sql
-            relativeToChangelogFile: true
-        - sqlFile:
-            path: projectData/reattachPartitions.sql
             relativeToChangelogFile: true
 
   - changeSet:
