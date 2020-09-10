@@ -23,6 +23,7 @@ databaseChangeLog:
         - dropTable: 
             schemaName: ${WQP_SCHEMA_NAME}
             tableName:  station
+            cascadeConstraints: true
         - sqlFile:
             path: station/station.sql
             relativeToChangelogFile: true
@@ -50,6 +51,7 @@ databaseChangeLog:
         - dropTable: 
             schemaName: ${WQP_SCHEMA_NAME}
             tableName:  station_object
+            cascadeConstraints: true
         - sqlFile:
             path: stationObject/stationObject.sql
             relativeToChangelogFile: true
@@ -77,6 +79,7 @@ databaseChangeLog:
         - dropTable: 
             schemaName: ${WQP_SCHEMA_NAME}
             tableName:  station_sum
+            cascadeConstraints: true
         - sqlFile:
             path: stationSum/stationSum.sql
             relativeToChangelogFile: true
@@ -104,6 +107,7 @@ databaseChangeLog:
         - dropTable: 
             schemaName: ${WQP_SCHEMA_NAME}
             tableName:  activity
+            cascadeConstraints: true
         - sqlFile:
             path: activity/activity.sql
             relativeToChangelogFile: true
@@ -131,6 +135,7 @@ databaseChangeLog:
         - dropTable: 
             schemaName: ${WQP_SCHEMA_NAME}
             tableName:  activity_object
+            cascadeConstraints: true
         - sqlFile:
             path: activityObject/activityObject.sql
             relativeToChangelogFile: true
@@ -158,6 +163,7 @@ databaseChangeLog:
         - dropTable: 
             schemaName: ${WQP_SCHEMA_NAME}
             tableName:  activity_sum
+            cascadeConstraints: true
         - sqlFile:
             path: activitySum/activitySum.sql
             relativeToChangelogFile: true
@@ -185,6 +191,7 @@ databaseChangeLog:
         - dropTable: 
             schemaName: ${WQP_SCHEMA_NAME}
             tableName:  act_metric
+            cascadeConstraints: true
         - sqlFile:
             path: actMetric/actMetric.sql
             relativeToChangelogFile: true
@@ -212,6 +219,7 @@ databaseChangeLog:
         - dropTable: 
             schemaName: ${WQP_SCHEMA_NAME}
             tableName:  assemblage
+            cascadeConstraints: true
         - sqlFile:
             path: assemblage/assemblage.sql
             relativeToChangelogFile: true
@@ -239,6 +247,7 @@ databaseChangeLog:
         - dropTable: 
             schemaName: ${WQP_SCHEMA_NAME}
             tableName:  bio_hab_metric
+            cascadeConstraints: true
         - sqlFile:
             path: bioHabMetric/bioHabMetric.sql
             relativeToChangelogFile: true
@@ -266,6 +275,7 @@ databaseChangeLog:
         - dropTable: 
             schemaName: ${WQP_SCHEMA_NAME}
             tableName:  char_name
+            cascadeConstraints: true
         - sqlFile:
             path: charName/charName.sql
             relativeToChangelogFile: true
@@ -293,6 +303,7 @@ databaseChangeLog:
         - dropTable: 
             schemaName: ${WQP_SCHEMA_NAME}
             tableName:  char_type
+            cascadeConstraints: true
         - sqlFile:
             path: charType/charType.sql
             relativeToChangelogFile: true
@@ -320,6 +331,7 @@ databaseChangeLog:
         - dropTable: 
             schemaName: ${WQP_SCHEMA_NAME}
             tableName:  country
+            cascadeConstraints: true
         - sqlFile:
             path: country/country.sql
             relativeToChangelogFile: true
@@ -347,6 +359,7 @@ databaseChangeLog:
         - dropTable: 
             schemaName: ${WQP_SCHEMA_NAME}
             tableName:  county
+            cascadeConstraints: true
         - sqlFile:
             path: county/county.sql
             relativeToChangelogFile: true
@@ -374,6 +387,7 @@ databaseChangeLog:
         - dropTable: 
             schemaName: ${WQP_SCHEMA_NAME}
             tableName:  ml_grouping
+            cascadeConstraints: true
         - sqlFile:
             path: mlGrouping/mlGrouping.sql
             relativeToChangelogFile: true
@@ -401,6 +415,7 @@ databaseChangeLog:
         - dropTable: 
             schemaName: ${WQP_SCHEMA_NAME}
             tableName:  monitoring_loc
+            cascadeConstraints: true
         - sqlFile:
             path: monitoringLoc/monitoringLoc.sql
             relativeToChangelogFile: true
@@ -428,6 +443,7 @@ databaseChangeLog:
         - dropTable: 
             schemaName: ${WQP_SCHEMA_NAME}
             tableName:  organization
+            cascadeConstraints: true
         - sqlFile:
             path: organization/organization.sql
             relativeToChangelogFile: true
@@ -455,6 +471,7 @@ databaseChangeLog:
         - dropTable: 
             schemaName: ${WQP_SCHEMA_NAME}
             tableName:  organization_sum
+            cascadeConstraints: true
         - sqlFile:
             path: organizationSum/organizationSum.sql
             relativeToChangelogFile: true
@@ -482,6 +499,7 @@ databaseChangeLog:
         - dropTable: 
             schemaName: ${WQP_SCHEMA_NAME}
             tableName:  org_data
+            cascadeConstraints: true
         - sqlFile:
             path: orgData/orgData.sql
             relativeToChangelogFile: true
@@ -509,6 +527,7 @@ databaseChangeLog:
         - dropTable: 
             schemaName: ${WQP_SCHEMA_NAME}
             tableName:  org_grouping
+            cascadeConstraints: true
         - sqlFile:
             path: orgGrouping/orgGrouping.sql
             relativeToChangelogFile: true
@@ -536,6 +555,7 @@ databaseChangeLog:
         - dropTable: 
             schemaName: ${WQP_SCHEMA_NAME}
             tableName:  prj_ml_weighting
+            cascadeConstraints: true
         - sqlFile:
             path: prjMLWeighting/prjMLWeighting.sql
             relativeToChangelogFile: true
@@ -563,6 +583,7 @@ databaseChangeLog:
         - dropTable: 
             schemaName: ${WQP_SCHEMA_NAME}
             tableName:  project
+            cascadeConstraints: true
         - sqlFile:
             path: project/project.sql
             relativeToChangelogFile: true
@@ -590,6 +611,7 @@ databaseChangeLog:
         - dropTable: 
             schemaName: ${WQP_SCHEMA_NAME}
             tableName:  project_data
+            cascadeConstraints: true
         - sqlFile:
             path: projectData/projectData.sql
             relativeToChangelogFile: true
@@ -617,6 +639,7 @@ databaseChangeLog:
         - dropTable: 
             schemaName: ${WQP_SCHEMA_NAME}
             tableName:  project_dim
+            cascadeConstraints: true
         - sqlFile:
             path: projectDim/projectDim.sql
             relativeToChangelogFile: true
@@ -644,6 +667,7 @@ databaseChangeLog:
         - dropTable: 
             schemaName: ${WQP_SCHEMA_NAME}
             tableName:  project_object
+            cascadeConstraints: true
         - sqlFile:
             path: projectObject/projectObject.sql
             relativeToChangelogFile: true
@@ -671,6 +695,7 @@ databaseChangeLog:
         - dropTable: 
             schemaName: ${WQP_SCHEMA_NAME}
             tableName:  qwportal_summary
+            cascadeConstraints: true
         - sqlFile:
             path: qwportalSummary/qwportalSummary.sql
             relativeToChangelogFile: true
@@ -698,6 +723,7 @@ databaseChangeLog:
         - dropTable: 
             schemaName: ${WQP_SCHEMA_NAME}
             tableName:  r_detect_qnt_lmt
+            cascadeConstraints: true
         - sqlFile:
             path: rDetectQntLmt/rDetectQntLmt.sql
             relativeToChangelogFile: true
@@ -725,6 +751,7 @@ databaseChangeLog:
         - dropTable: 
             schemaName: ${WQP_SCHEMA_NAME}
             tableName:  result
+            cascadeConstraints: true
         - sqlFile:
             path: result/result.sql
             relativeToChangelogFile: true
@@ -752,6 +779,7 @@ databaseChangeLog:
         - dropTable: 
             schemaName: ${WQP_SCHEMA_NAME}
             tableName:  result_object
+            cascadeConstraints: true
         - sqlFile:
             path: resultObject/resultObject.sql
             relativeToChangelogFile: true
@@ -779,6 +807,7 @@ databaseChangeLog:
         - dropTable: 
             schemaName: ${WQP_SCHEMA_NAME}
             tableName:  result_sum
+            cascadeConstraints: true
         - sqlFile:
             path: resultSum/resultSum.sql
             relativeToChangelogFile: true
@@ -806,6 +835,7 @@ databaseChangeLog:
         - dropTable: 
             schemaName: ${WQP_SCHEMA_NAME}
             tableName:  sample_media
+            cascadeConstraints: true
         - sqlFile:
             path: sampleMedia/sampleMedia.sql
             relativeToChangelogFile: true
@@ -833,6 +863,7 @@ databaseChangeLog:
         - dropTable: 
             schemaName: ${WQP_SCHEMA_NAME}
             tableName:  site_type
+            cascadeConstraints: true
         - sqlFile:
             path: siteType/siteType.sql
             relativeToChangelogFile: true
@@ -860,6 +891,7 @@ databaseChangeLog:
         - dropTable: 
             schemaName: ${WQP_SCHEMA_NAME}
             tableName:  state
+            cascadeConstraints: true
         - sqlFile:
             path: state/state.sql
             relativeToChangelogFile: true
@@ -887,6 +919,7 @@ databaseChangeLog:
         - dropTable: 
             schemaName: ${WQP_SCHEMA_NAME}
             tableName:  taxa_name
+            cascadeConstraints: true
         - sqlFile:
             path: taxaName/taxaName.sql
             relativeToChangelogFile: true
