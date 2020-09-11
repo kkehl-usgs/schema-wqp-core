@@ -1,4 +1,4 @@
-create unlogged table if not exists ${WQP_SCHEMA_NAME}.tl_2019_us_county_geopkg
+create table if not exists ${WQP_SCHEMA_NAME}.tl_2019_us_county_geopkg
 (objectid                         serial
 ,statefp                          character varying(2)
 ,countyfp                         character varying(3)
