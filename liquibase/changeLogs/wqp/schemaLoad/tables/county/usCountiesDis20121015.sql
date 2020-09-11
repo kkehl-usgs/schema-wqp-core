@@ -1,4 +1,4 @@
-create unlogged table if not exists ${WQP_SCHEMA_NAME}.us_counties_dis_20121015
+create table if not exists ${WQP_SCHEMA_NAME}.us_counties_dis_20121015
 (fips                           character varying (5)
 ,area                           numeric
 ,perimeter                      numeric
