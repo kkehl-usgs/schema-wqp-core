@@ -5,36 +5,36 @@ databaseChangeLog:
 
   - changeSet:
       author: kkehl
-      id: "create.index.${WQP_SCHEMA_NAME}.characteristic_name_copper"
+      id: "create.index.${WQP_SCHEMA_NAME}.characteristic_name_salinity"
       preConditions:
         - onFail: MARK_RAN
         - onError: HALT
         - not:
           - indexExists:
               WQP_SCHEMA_NAME: ${WQP_SCHEMA_NAME}
-              indexName: characteristic_name_copper
+              indexName: characteristic_name_salinity
       changes:
-        - sql: create index if not exists characteristic_name_copper on ${WQP_SCHEMA_NAME}.result where characteristic_name in ('Copper') with (fillfactor = 100);
-        - rollback: drop index if exists ${WQP_SCHEMA_NAME}.characteristic_name_copper;
+        - sql: create index if not exists characteristic_name_salinity on ${WQP_SCHEMA_NAME}.result where characteristic_name in ('Salinity') with (fillfactor = 100);
+        - rollback: drop index if exists ${WQP_SCHEMA_NAME}.characteristic_name_salinity;
 
   - changeSet:
       author: kkehl
-      id: "create.index.${WQP_SCHEMA_NAME}.characteristic_name_silica"
+      id: "create.index.${WQP_SCHEMA_NAME}.characteristic_name_chloride"
       preConditions:
         - onFail: MARK_RAN
         - onError: HALT
         - not:
             - indexExists:
                 WQP_SCHEMA_NAME: ${WQP_SCHEMA_NAME}
-                indexName: characteristic_name_silica
+                indexName: characteristic_name_chloride
       changes:
-        - sql: create index if not exists characteristic_name_silica on ${WQP_SCHEMA_NAME}.result where characteristic_name in ('Silica') with (fillfactor = 100);
-        - rollback: drop index if exists ${WQP_SCHEMA_NAME}.characteristic_name_silica;
+        - sql: create index if not exists characteristic_name_chloride on ${WQP_SCHEMA_NAME}.result where characteristic_name in ('Chloride') with (fillfactor = 100);
+        - rollback: drop index if exists ${WQP_SCHEMA_NAME}.characteristic_name_chloride;
 
 
   - changeSet:
       author: kkehl
-      id: "create.index.${WQP_SCHEMA_NAME}.characteristic_name_silica"
+      id: "create.index.${WQP_SCHEMA_NAME}.characteristic_name_ph"
       preConditions:
         - onFail: MARK_RAN
         - onError: HALT
@@ -45,3 +45,33 @@ databaseChangeLog:
       changes:
         - sql: create index if not exists characteristic_name_ph on ${WQP_SCHEMA_NAME}.result where characteristic_name in ('pH') with (fillfactor = 100);
         - rollback: drop index if exists ${WQP_SCHEMA_NAME}.characteristic_name_ph;
+
+
+  - changeSet:
+      author: kkehl
+      id: "create.index.${WQP_SCHEMA_NAME}.characteristic_name_fecal_coliform"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - not:
+            - indexExists:
+                WQP_SCHEMA_NAME: ${WQP_SCHEMA_NAME}
+                indexName: characteristic_name_fecal_coliform
+      changes:
+        - sql: create index if not exists characteristic_name_fecal_coliform on ${WQP_SCHEMA_NAME}.result where characteristic_name in ('Fecal Coliform') with (fillfactor = 100);
+        - rollback: drop index if exists ${WQP_SCHEMA_NAME}.characteristic_name_fecal_coliform;
+
+
+  - changeSet:
+      author: kkehl
+      id: "create.index.${WQP_SCHEMA_NAME}.characteristic_name_calcium"
+      preConditions:
+        - onFail: MARK_RAN
+        - onError: HALT
+        - not:
+            - indexExists:
+                WQP_SCHEMA_NAME: ${WQP_SCHEMA_NAME}
+                indexName: characteristic_name_calcium
+      changes:
+        - sql: create index if not exists characteristic_name_calcium on ${WQP_SCHEMA_NAME}.result where characteristic_name in ('Calcium') with (fillfactor = 100);
+        - rollback: drop index if exists ${WQP_SCHEMA_NAME}.characteristic_name_calcium;
