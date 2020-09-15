@@ -14,3 +14,7 @@ databaseChangeLog:
   - include:
       file: "states/changeLog.yml"
       relativeToChangelogFile: true
+
+  - include:
+      file: "characteristic_name/changeLog.yml"
+      relativeToChangelogFile: true
